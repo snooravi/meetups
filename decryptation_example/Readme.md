@@ -12,7 +12,7 @@
 
 ### Execution
 
-Open the jupyter notebook named: Decryption.ipynb. To run each cell, press Shift+Enter. Make sure to run them sequentially because each cell depends on the one before it. 
+Open the jupyter notebook named: metro_decyphir.ipynb. To run each cell, press Shift+Enter. Make sure to run them sequentially because each cell depends on the one before it. 
 
 ### Contibutions
 Code in R: http://alandgraf.blogspot.com/2013/01/text-decryption-using-mcmc.html
