@@ -1,6 +1,6 @@
 ## Decryption 
 
-**Idea**: Decryption is used in many places that we may or may not be conscious of like when we use the phone, when we  
+**Idea**: Cryptography is the study of algorithms to encrypt and decrypt messages between senders and receivers. Decryption is used in many places that we may or may not be aware of like when we use the phone, when we make transactions online, and more prominently today in blockchain.
 
 
 ### Methodology
