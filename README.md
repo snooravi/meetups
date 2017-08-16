@@ -40,3 +40,6 @@ Sixth Meetup:
 - **Where**: Ticketmaster
 - **When**: 7/15/17
 - **Topic**: Focus on Encryption and Decryption with Python. Specifically, we maximize the Log-Likihood loss function using the Metropolis Algorithm. Refer to decryption example folder for more. 
+
+
+I am always open to your feedback! Feel free to email me at with any machine learning questions or suggestions for the next meetup: sarah@opearm.com
