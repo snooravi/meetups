@@ -39,7 +39,14 @@ Sixth Meetup:
 
 - **Where**: Ticketmaster
 - **When**: 7/15/17
-- **Topic**: Focus on Encryption and Decryption with Python. Specifically, we maximize the Log-Likihood loss function using the Metropolis Algorithm. Refer to decryption example folder for more. 
+- **Topic**: Focus on Encryption and Decryption with Python. Specifically, we maximize the Log-Likihood loss function using the Metropolis Algorithm. Refer to decryption example folder for more.
+
+
+Seventh Meetup:
+
+- **Where**: Ticketmaster
+- **When**: 10/17/17
+- **Topic**: This week we talk about 3 different ensemble methods: Bagging, Boosting and Stacking. We discuss the benefits of ensemble methods and run through an example of Bagging using Sonar data from scratch in Python.  
 
 
 I am always open to your feedback! Feel free to email me at with any machine learning questions or suggestions for the next meetup: sarah@opearm.com
