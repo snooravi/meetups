@@ -31,14 +31,14 @@ Fourth Meetup:
 Fifth Meetup:
 
 - **Where**: Ticketmaster
-- **When**: 6/18/17
+- **When**: 7/18/17
 - **Topic**: Focus on natural language processing with Python, namely implementation of TF-IDF as a means of extracting insights from text data. Refer to tf-idf example folder for more.
 
 
 Sixth Meetup:
 
 - **Where**: Ticketmaster
-- **When**: 7/15/17
+- **When**: 8/15/17
 - **Topic**: Focus on Encryption and Decryption with Python. Specifically, we maximize the Log-Likihood loss function using the Metropolis Algorithm. Refer to decryption example folder for more.
 
 
