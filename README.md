@@ -26,7 +26,6 @@
 6/6/17:
 
 - **Where**: Ticketmaster
-- **When**: 6/6/17
 - **Topic**: Meetup lead by Liz.  
 - **Meetup Link**: `https://www.meetup.com/LearnTeachCode/events/240408210/`
 
