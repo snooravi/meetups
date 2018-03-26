@@ -64,6 +64,12 @@
 - **Meetup Link**: `https://www.meetup.com/LearnTeachCode/events/247654593/`
 - **Meetup Recording**: `https://www.youtube.com/watch?v=08YqdaY-_jc&feature=youtu.be`
 
+3/26/18:
+
+- **Where**: Ticketmaster
+- **Topic**: Recommendation systems
+- **Meetup Link**: `https://www.meetup.com/LearnTeachCode/events/247763461/`
+- **Meetup Recording**: `https://www.youtube.com/watch?v=JGG8lTRG7Hs`
 
 
-I am always open to your feedback! Feel free to email me at with any machine learning questions or suggestions for the next meetup: sarah@opearm.com
+I am always open to your feedback! Feel free to email me at with any machine learning questions or suggestions for the next meetup: snooravi17@gmail.com
