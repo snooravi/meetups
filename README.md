@@ -71,5 +71,10 @@
 - **Meetup Link**: `https://www.meetup.com/LearnTeachCode/events/247763461/`
 - **Meetup Recording**: `https://www.youtube.com/watch?v=JGG8lTRG7Hs`
 
+6/20/18:
+- **Where**: MobilityWare
+- **Topic**: Resampling Techniques
+- **Meetup Link**: `https://www.meetup.com/OC-Machine-Learning-and-Big-Data/events/qjmnspyxjbbc/`
+- **Meetup Recording**: `https://www.youtube.com/watch?v=t3x3AbRkb7U`
 
 I am always open to your feedback! Feel free to email me at with any machine learning questions or suggestions for the next meetup: snooravi17@gmail.com
