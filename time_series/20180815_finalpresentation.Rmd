@@ -1,0 +1,335 @@
+---
+title: 'Time Series'
+author: "OC Data Driven Insights"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output:
+  beamer_presentation:
+    colortheme: "beaver"
+---
+
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(TSA)
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+```
+
+# Introduction to Time Series
+
+# Outline
+
+- What is a time series? Time series model?
+    + Time Series Examples
+- Fundamental building blocks of time series
+    + White noise
+    + Moving average
+    + Random walk
+- Second order properties and stationarity
+- When/why linear regression fails
+
+# What is a Time Series?
+
+- Simply: data points indexed by time order
+- Natural temporal order of data
+- Typically: Equally spaced points in time
+- Often different than what we see in a regression setting
+
+# Why Care about Time Series
+
+- They are everywhere!
+- Economics (stock market, unemployment, etc)
+- Social sciences (population series like birth rates or school enrollments)
+- Epidemiology (influenza outbreaks)
+- Medicine (blood pressure measurements)
+
+# Working with Time Series
+
+- Time series analysis
+    + Analyzing observed data
+    + Focus on characteristics of the data
+    + Explanatory focus
+- Time series forecasting
+    + Generating a model
+    + Predictive focus
+
+# Some Additional Terminology
+
+- Stochastic process
+    + A sequence of random variables
+    + Example: flipping a coin
+- Sample path
+    + Sample path of a stochastic process
+    + One sample from a stochastic process
+    + For example: HTHHTT (six coin flips)
+- A stochastic process can generate MANY sample paths (infinitely many)
+
+# Fundamental Stochastic Processes
+
+- White noise
+- Moving average
+- Random walks
+
+# White Noise
+
+- Fundamental building block of other stochastic processes
+- Key: no correlation between observations
+- Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
+- Normal distribution? Anyone? Anyone at all?
+- Define $Y_{t} = e_{t}$ for all $t$
+- $Y_{t}$ is called white noise (process looks like white light of spectrometers)
+
+# White Noise: 1 Sample Path
+
+```{r, echo = FALSE}
+set.seed(12345)
+
+N <- 1L # 50 sample paths
+T <- 100L 
+
+# please write your code below
+whitenoise <- data.frame(e = rnorm(T*N)) %>%
+            mutate(t = rep(1:T,N),
+                   path = rep(1:N, each = T)) %>%
+            group_by(path) %>%
+            mutate(Y = e) %>%
+            ungroup()
+
+p5 <- whitenoise %>% ggplot() + 
+             geom_line(aes(x = t, 
+                           y = Y, 
+                           col = factor(path))) + 
+             theme(legend.position = 'none')
+
+p5
+
+```
+
+# White Noise: Many Sample Paths
+
+```{r, echo = FALSE}
+set.seed(12345)
+
+N <- 10L # 50 sample paths
+T <- 100L 
+
+# please write your code below
+randwalk <- data.frame(e = rnorm(T*N)) %>%
+            mutate(t = rep(1:T,N),
+                   path = rep(1:N, each = T)) %>%
+            group_by(path) %>%
+            mutate(Y = e) %>%
+            ungroup()
+
+p1 <- randwalk %>% ggplot() + 
+             geom_line(aes(x = t, 
+                           y = Y, 
+                           col = factor(path))) + 
+             theme(legend.position = 'none')
+
+p1
+
+```
+
+# Moving Average
+
+- Big difference: there IS correlation between observations
+- Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
+- Define $Y_{t} = \frac{e_{t}+e_{t+1}}{2}$ for all $t$
+- $Y_{t}$ is a type of moving average stochastic process
+
+# Moving Average: 1 Sample Path
+
+```{r, echo = FALSE}
+set.seed(12345)
+
+N <- 1L # 50 sample paths
+T <- 100L 
+
+# please write your code below
+movingavg <- data.frame(e = rnorm(T*N)) %>%
+            mutate(t = rep(1:T,N),
+                   path = rep(1:N, each = T)) %>%
+            group_by(path) %>%
+            mutate(Y = (e+zlag(e))/2) %>%
+            ungroup()
+
+p5 <- movingavg %>% ggplot() + 
+             geom_line(aes(x = t, 
+                           y = Y, 
+                           col = factor(path))) + 
+             theme(legend.position = 'none')
+
+p5
+
+```
+
+# Moving Average: Many Sample Paths
+
+```{r, echo = FALSE}
+set.seed(12345)
+
+N <- 10L # 50 sample paths
+T <- 100L 
+
+# please write your code below
+randwalk <- data.frame(e = rnorm(T*N)) %>%
+            mutate(t = rep(1:T,N),
+                   path = rep(1:N, each = T)) %>%
+            group_by(path) %>%
+            mutate(Y = (e+zlag(e))/2) %>%
+            ungroup()
+
+p0 <- randwalk %>% ggplot() + 
+             geom_line(aes(x = t, 
+                           y = Y, 
+                           col = factor(path))) + 
+             theme(legend.position = 'none')
+
+p0
+
+```
+
+# Random Walk
+
+- Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
+- Define $Y_{t} = e_1 + e_2 + ... + e_{t}$ for all $t$
+- $Y_{t}$ is a random walk
+
+# Random Walk: 1 Sample Path
+
+```{r, echo = FALSE}
+set.seed(12345)
+
+N <- 1L # 50 sample paths
+T <- 200L 
+
+# please write your code below
+randwalk <- data.frame(e = rnorm(T*N)) %>%
+            mutate(t = rep(1:T,N),
+                   path = rep(1:N, each = T)) %>%
+            group_by(path) %>%
+            mutate(Y = cumsum(e)) %>%
+            ungroup()
+
+p5 <- randwalk %>% ggplot() + 
+             geom_line(aes(x = t, 
+                           y = Y, 
+                           col = factor(path))) + 
+             theme(legend.position = 'none')
+
+p5
+
+```
+
+# Random Walk: Many Sample Paths
+
+```{r, echo = FALSE}
+set.seed(12345)
+
+N <- 10L # 50 sample paths
+T <- 200L 
+
+# please write your code below
+randwalk <- data.frame(e = rnorm(T*N)) %>%
+            mutate(t = rep(1:T,N),
+                   path = rep(1:N, each = T)) %>%
+            group_by(path) %>%
+            mutate(Y = cumsum(e)) %>%
+            ungroup()
+
+p5 <- randwalk %>% ggplot() + 
+             geom_line(aes(x = t, 
+                           y = Y, 
+                           col = factor(path))) + 
+             theme(legend.position = 'none')
+
+p5
+
+```
+
+# Why Care about Stochastic Processes?
+
+- We have ONE sample path of observations
+- From this sample path we intend to infer the stochastic process that generated it
+- We are NOT fitting lines to the data
+- We are understanding the sample paths the process could take
+
+# Typical Process
+
+- We observe a process to a specific point
+- We determine what sample paths are likely as we look later in time
+
+# Stationarity
+
+- Heavily mathematical definition
+- Essence of it:
+    + The mean (or expected value of the stochastic process) is constant
+    + Covariance (or corelation between points only depends on distance between points and not on the value of $t$)
+- Stationarity is an extremely common assumption in time series modeling!
+
+# Time Series: Linear Trend
+
+- Assume stochastic process is $Y_{t} = \beta_{0} + \beta_{1}t + X_{t}$
+- Assume $E[X_{t}] = 0$ and $X_t$ is stationary
+- This is just like linear regression so let's use OLS
+
+# Time Series: Linear Trend
+
+```{r, echo = FALSE}
+set.seed(12345)
+N <- 100
+e <- rnorm(N,0,50)
+t <- 1:N
+Y <- ts(25.0 + 3.0*t + e)
+par(mar=c(2,2,0.2,0.2))
+plot(Y, type='o')
+```
+
+# Time Series
+
+- Linear regression recovers the true parameters (close)
+```{r, echo = FALSE}
+library(broom)
+summary(lm(Y ~ 1 + t)) %>% tidy
+```
+
+# Time Series: Linear Model for Random Walk
+
+- What if we fit a random walk $Y_t$ with a linear model?
+- Put another way: what if we regress a random walk on time with a linear model?
+- Good choice, bad choice? 
+
+# Linear Model for a Random Walk
+
+```{r, echo = FALSE}
+set.seed(12345)
+N <- 100
+e <- rnorm(N,0,50)
+t <- 1:N
+Y <- cumsum(e)
+par(mar=c(2,2,0.2,0.2))
+plot(Y, type='o')
+```
+
+# Linear Model for a Random Walk
+
+- Linear regression fails. Hard
+- Significant trend when there is NOT one
+- Reminder: there is not a trend because the expected value of $Y_t$ is $0$
+
+```{r, echo = FALSE}
+library(broom)
+summary(lm(Y ~ 1 + t)) %>% tidy
+```
+
+# What Happened?
+
+- Spurious regression
+- DO NOT regress non-stationary time series
+- Our mistake
+    + Coefficient is okay
+    + Standard error is underestimated
+- A random walk does not follow required linear regression assumptions!
+    + Which key assumption does it not follow?
