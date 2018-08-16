@@ -16,6 +16,12 @@ knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 ```
 
+# Resources
+
+- [Forecasting: Principles and Practice by Rob J. Hyndman and George Athanasopoulos](https://otexts.org/fpp2/)
+- [Time Series Analysis and Its Applications with R Examples by Robert H. Shumway and David S. Stoffer](http://db.ucsd.edu/static/TimeSeries.pdf)
+
+
 # Introduction to Time Series
 
 # Outline
