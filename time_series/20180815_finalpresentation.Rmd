@@ -6,6 +6,7 @@ date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   beamer_presentation:
     colortheme: "beaver"
+    highlight: tango
 ---
 
 ```{r setup, include=FALSE}
@@ -113,23 +114,25 @@ plot(jj_v, lag, ylab="lag(y)", xlab="y")
 # White Noise
 
 - Fundamental building block of other stochastic processes
-- Key: no correlation between observations
+- **Key**: NO correlation between observations
 - $Y_{t}$ is called white noise (process looks like white light of spectrometers)
 
 # White Noise: Definition
 
 - Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
 - Normal distribution? Anyone? Anyone at all?
-- Define $Y_{t} = e_{t}$ for all $t$
+
+\begin{center}
+
+Define $\boxed{Y_{t} = e_{t}}$ for all $t$
+
+\end{center}
+
 - A white noise process satisfies:
     + Mean($Y_{t}$) = constant
     + Var($Y_{t}$) = constant
     + Auto-covariance = 0
     
-# White Noise: Implications
-
-- Since the data is random (no pattern) there is no point in modeling 
-
 # White Noise: 1 Sample Path
 
 ```{r, echo = FALSE}
@@ -182,11 +185,22 @@ p1
 
 ```
 
+# White Noise: Implications
+
+- Since the data is random there is no point in modeling 
+![](images/stop.jpg)
+
 # Moving Average
 
-- Big difference: there IS correlation between observations
+- **Big difference**: there IS correlation between observations
 - Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
-- Define $Y_{t} = \frac{e_{t}+e_{t+1}}{2}$ for all $t$
+
+\begin{center}
+
+Define $\boxed{Y_{t} = \frac{e_{t}+e_{t+1}}{2}}$ for all $t$
+
+\end{center}
+
 - $Y_{t}$ is a type of moving average stochastic process
 
 # Moving Average: 1 Sample Path
@@ -244,7 +258,13 @@ p0
 # Random Walk
 
 - Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
-- Define $Y_{t} = e_1 + e_2 + ... + e_{t}$ for all $t$
+
+\begin{center}
+
+Define $\boxed{Y_{t} = e_1 + e_2 + ... + e_{t}}$ for all $t$
+
+\end{center}
+
 - $Y_{t}$ is a random walk
 
 # Random Walk: 1 Sample Path
