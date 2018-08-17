@@ -1,6 +1,7 @@
 ---
-title: 'Time Series'
-author: "OC Data Driven Insights"
+title: 'Introduction to Time Series Analysis'
+subtitle: 'OC Data Driven Insights'
+author: "Eric Weber and Sarah Nooravi"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
 output:
   beamer_presentation:
@@ -21,9 +22,6 @@ knitr::opts_chunk$set(message = FALSE)
 - [Forecasting: Principles and Practice by Rob J. Hyndman and George Athanasopoulos](https://otexts.org/fpp2/)
 - [Time Series Analysis and Its Applications with R Examples by Robert H. Shumway and David S. Stoffer](http://db.ucsd.edu/static/TimeSeries.pdf)
 
-
-# Introduction to Time Series
-
 # Outline
 
 - What is a time series? Time series model?
@@ -35,14 +33,49 @@ knitr::opts_chunk$set(message = FALSE)
 - Second order properties and stationarity
 - When/why linear regression fails
 
+# What is a Time Series? 
+
+A sequence of values of a variable at **equally spaced** intervals with a **natural temporal ordering**. 
+
+```{r, echo = TRUE, prompt=TRUE}
+require(astsa)
+window(jj, 1960, c(1965,4)) 
+```
+
 # What is a Time Series?
 
-- Simply: data points indexed by time order
-- Natural temporal order of data
-- Typically: Equally spaced points in time
-- Often different than what we see in a regression setting
+```{r, echo = TRUE, prompt=TRUE}
+plot(jj, type="o", ylab="Quarterly Earnings per Share")
+```
 
-# Why Care about Time Series
+# What is a Time Series?
+
+```{r, echo = TRUE}
+plot(gtemp, type="o", ylab="Global Temperature Deviations")
+```
+
+# Key Assumption 
+
+Can’t assume consecutive observations are independent
+
+```{r, echo=TRUE, strip.white=TRUE, prompt=TRUE}
+jj_v <- unclass(jj)
+lag <- lag(jj_v, 1)
+lm <- lm(jj_v ~ lag)
+cor.test( ~ jj_v + lag, 
+         method = "pearson",
+         conf.level = 0.95)
+```
+
+# Key Assumption
+
+Can’t assume consecutive observations are independent
+
+```{r, echo=TRUE, strip.white=TRUE, prompt=TRUE}
+plot(jj_v, lag, ylab="lag(y)", xlab="y")
+```
+
+# Why Care about Time Series?
 
 - They are everywhere!
 - Economics (stock market, unemployment, etc)
@@ -81,10 +114,21 @@ knitr::opts_chunk$set(message = FALSE)
 
 - Fundamental building block of other stochastic processes
 - Key: no correlation between observations
+- $Y_{t}$ is called white noise (process looks like white light of spectrometers)
+
+# White Noise: Definition
+
 - Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
 - Normal distribution? Anyone? Anyone at all?
 - Define $Y_{t} = e_{t}$ for all $t$
-- $Y_{t}$ is called white noise (process looks like white light of spectrometers)
+- A white noise process satisfies:
+    + Mean($Y_{t}$) = constant
+    + Var($Y_{t}$) = constant
+    + Auto-covariance = 0
+    
+# White Noise: Implications
+
+- Since the data is random (no pattern) there is no point in modeling 
 
 # White Noise: 1 Sample Path
 
