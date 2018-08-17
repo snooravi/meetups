@@ -23,6 +23,8 @@ knitr::opts_chunk$set(message = FALSE)
 
 - [Forecasting: Principles and Practice by Rob J. Hyndman and George Athanasopoulos](https://otexts.org/fpp2/)
 - [Time Series Analysis and Its Applications with R Examples by Robert H. Shumway and David S. Stoffer](http://db.ucsd.edu/static/TimeSeries.pdf)
+- [astsa](https://cran.r-project.org/web/packages/astsa/astsa.pdf)
+    + Includes datasets and scripts to accompany *Time Series Analysis and Its Applications with R Examples* by Robert H. Shumway and David S. Stoffer
 
 # Outline
 
@@ -35,25 +37,40 @@ knitr::opts_chunk$set(message = FALSE)
 - Second order properties and stationarity
 - When/why linear regression fails
 
-# What is a Time Series? 
+# What is a Time Series: Definition
 
 A sequence of values of a variable at **equally spaced** intervals with a **natural temporal ordering**. 
+
+# What is a Time Series: Johnson and Johnson 
+
+Let's look at a dataset provided in the `astsa` package  which shows **quarterly** earnings per share for Johnson and Johnson from the first quarter of 1960 to the last quarter of 1980.
 
 ```{r, echo = TRUE, prompt=TRUE}
 require(astsa)
 window(jj, 1960, c(1965,4)) 
 ```
 
-# What is a Time Series?
+# What is a Time Series: Johnson and Johnson
+
+If we plot the time series, we get:
 
 ```{r, echo = TRUE, prompt=TRUE}
 plot(jj, type="o", ylab="Quarterly Earnings per Share")
 ```
 
-# What is a Time Series?
+# What is a Time Series: Global Temperature
+
+Let's look at another dataset which shows the **yearly** global mean land-ocean temperature deviations (from 1951-1980 average), measured in degrees centigrade, for the years 1880-2015.
+
+```{r, echo = TRUE, prompt=TRUE}
+class(globtemp)
+window(globtemp, 1880, 1885)
+```
+
+# What is a Time Series: Global Temperature
 
 ```{r, echo = TRUE}
-plot(gtemp, type="o", ylab="Global Temperature Deviations")
+plot(globtemp, type="o", ylab="Global Temperature Deviations")
 ```
 
 # Key Assumption 
@@ -97,13 +114,13 @@ plot(jj_v, lag, ylab="lag(y)", xlab="y")
 
 # Some Additional Terminology
 
-- Stochastic process
+- **Stochastic process**
     + A sequence of random variables
-    + Example: flipping a coin
-- Sample path
+    + *Example*: flipping a coin
+- **Sample path**
     + Sample path of a stochastic process
     + One sample from a stochastic process
-    + For example: HTHHTT (six coin flips)
+    + *Example*: HTHHTT (six coin flips)
 - A stochastic process can generate MANY sample paths (infinitely many)
 
 # Fundamental Stochastic Processes
@@ -115,8 +132,10 @@ plot(jj_v, lag, ylab="lag(y)", xlab="y")
 # White Noise
 
 - Fundamental building block of other stochastic processes
-- **Key**: NO correlation between observations
 - $Y_{t}$ is called white noise (process looks like white light of spectrometers)
+
+**Key**: No correlation between observations
+
 
 # White Noise: Definition
 
@@ -124,9 +143,7 @@ plot(jj_v, lag, ylab="lag(y)", xlab="y")
 - Normal distribution? Anyone? Anyone at all?
 
 \begin{center}
-
 Define $\boxed{Y_{t} = e_{t}}$ for all $t$
-
 \end{center}
 
 - A white noise process satisfies:
@@ -188,21 +205,25 @@ p1
 
 # White Noise: Implications
 
-- Since the data is random there is no point in modeling 
+Since the data is random there is no point in modeling 
+<center>
+
 ![](images/stop.jpg)
+
+</center>
+
 
 # Moving Average
 
-- **Big difference**: there IS correlation between observations
 - Assume $e_{t} \sim N(0,1)$ is a collection of IID random variables all following a normal distribution
 
 \begin{center}
-
 Define $\boxed{Y_{t} = \frac{e_{t}+e_{t+1}}{2}}$ for all $t$
-
 \end{center}
 
 - $Y_{t}$ is a type of moving average stochastic process
+
+**Big difference**: there IS correlation between observations
 
 # Moving Average: 1 Sample Path
 
