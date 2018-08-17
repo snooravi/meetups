@@ -88,8 +88,6 @@ cor.test( ~ jj_v + lag,
 
 # Key Assumption
 
-Can’t assume consecutive observations are independent
-
 ```{r, echo=TRUE, strip.white=TRUE, prompt=TRUE}
 plot(jj_v, lag, ylab="lag(y)", xlab="y")
 ```
@@ -135,7 +133,6 @@ plot(jj_v, lag, ylab="lag(y)", xlab="y")
 - $Y_{t}$ is called white noise (process looks like white light of spectrometers)
 
 **Key**: No correlation between observations
-
 
 # White Noise: Definition
 
