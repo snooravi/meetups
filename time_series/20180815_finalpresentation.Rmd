@@ -3,6 +3,7 @@ title: 'Introduction to Time Series Analysis'
 subtitle: 'OC Data Driven Insights'
 author: "Eric Weber and Sarah Nooravi"
 date: '`r format(Sys.Date(), "%B %d, %Y")`'
+fontsize: 10pt
 output:
   beamer_presentation:
     colortheme: "beaver"
