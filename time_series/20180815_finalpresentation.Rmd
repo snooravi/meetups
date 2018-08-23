@@ -19,6 +19,13 @@ knitr::opts_chunk$set(warning = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 ```
 
+# Announcements
+
+- Thank you to MobilityWare for hosting us! We are always looking to hire talent, so look at our website for open reqs. 
+- Next 2 meetups (topics we are tossing around): data visualization, portfolio optimization, loss function
+- No meetups planned for November/December
+- Interested in starting your own study group? Let's talk.. 
+
 # Resources
 
 - [Forecasting: Principles and Practice by Rob J. Hyndman and George Athanasopoulos](https://otexts.org/fpp2/)
